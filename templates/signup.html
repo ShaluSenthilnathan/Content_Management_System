@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        /* Navigation bar styles */
+        nav {
+            background-color: #333;
+            color: white;
+            text-align: right; /* Align contents to the right */
+            padding: 20px 0; /* Add some padding for thickness */
+        }
+ 
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+ 
+        nav li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+ 
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Form container */
+        .container {
+            margin: 100px auto;
+            width: 30%;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        /* Full-width inputs */
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        /* Set a style for all buttons */
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* Add a hover effect for buttons */
+        button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        
+    </nav>
+    <div class="container">
+        <h1>SIGN UP</h1>
+        <form action="{{ url_for('signup') }}" method="post">
+            <div class="form-group">
+                <b><label for="uname">Username:</label></b>
+                <input type="text" id="uname" name="uname" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <b><label for="psw">Password:</label></b>
+                <input type="password" id="psw" name="psw" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <b><label for="confirm_psw">Confirm Password:</label></b>
+                <input type="password" id="confirm_psw" name="confirm_psw" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+            <h6>Have an account? <a href="{{ url_for('signin') }}">Sign In</a></h6>
+            <h6><a href="{{ url_for('recover_users') }}">Recover Deleted Account</a></h6>
+            {% if get_flashed_messages() %}
+            <p class="text-danger">{{ get_flashed_messages() }}</p>
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>

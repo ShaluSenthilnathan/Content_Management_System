@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recover Users - Flask CMS</title>
+    <style>
+        /* Navigation bar styles */
+        nav {
+            background-color: #333;
+            color: white;
+            text-align: right; /* Align contents to the right */
+            padding: 20px 0; /* Add some padding for thickness */
+        }
+ 
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+ 
+        nav li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+ 
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <nav>
+        <ul>
+            {% if username %}
+                <li>Welcome, {{ username }}!</li>
+            {% endif %}
+            <li><a href="{{ url_for('dashboard') }}">Home</a></li>
+        </ul>
+    </nav>
+    <div class="container mt-5">
+        <h1>RECOVER USER ACCOUNT:</h1>
+        <form method="POST" action="{{ url_for('recover_users') }}">
+            <div class="form-group">
+                <b><label for="username">Username:</label></b>
+                <input type="text" id="username" name="username" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <b><label for="password">Password:</label></b>
+                <input type="password" id="password" name="password" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Recover Account</button>
+
+            {% if get_flashed_messages() %}
+                <p class="text-danger">{{ get_flashed_messages() }}</p>
+            {% endif %}
+
+
+            
+        </form>
+    </div>
+</body>
+</html>

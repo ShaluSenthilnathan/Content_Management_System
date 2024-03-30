@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Account - Flask CMS</title>
+    <style>
+        /* Styles for navigation bar */
+        nav {
+            background-color: #333;
+            color: white;
+            text-align: right; /* Align contents to the right */
+            padding: 20px 0; /* Add some padding for thickness */
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <!-- Navigation bar -->
+    <nav>
+        <ul>
+            {% if username %}
+                <li>Welcome, {{ username }}!</li>
+            {% endif %}
+            <li><a href="{{ url_for('signout') }}">Sign Out</a></li>
+        </ul>
+    </nav>
+
+    <!-- Delete Account Form -->
+    <div class="container mt-5">
+        <h1>DELETE ACCOUNT</h1>
+        <p>Please enter your username and password to confirm the deletion of your account.</p>
+        
+        <!-- Form for username and password input -->
+        <form method="post" action="{{ url_for('delete_account', user_id=user_id) }}">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-danger">Delete Account</button>
+            </div>
+            {% if get_flashed_messages() %}
+            <p class="text-danger">{{ get_flashed_messages() }}</p>
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>

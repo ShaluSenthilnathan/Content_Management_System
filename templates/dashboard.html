@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMS</title>
+</head>
+<style>
+    /* styles.css */
+ 
+/* Reset default margin and padding */
+* {
+    padding: 0;
+    box-sizing: border-box;
+}
+ 
+/* Navigation bar styles */
+nav {
+    background-color: #333;
+    color: white;
+    text-align: right; /* Align contents to the right */
+    padding: 15px 0; /* Add some padding for thickness */
+}
+ 
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+ 
+nav li {
+    display: inline-block;
+    margin-left: 15px; /* Add some space between navigation items */
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+/* Centered content */
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh; /* Adjust as needed */
+    background-color: #f9f9f9;
+}
+ 
+.content h1 {
+    font-size: 40px;
+    text-align: center;
+}
+ 
+</style>
+<body>
+    <nav>
+        <ul>
+            {% if username %}
+                <li>Welcome, {{ username }}!</li>
+                <li><a href="{{ url_for('view_article') }}">View Articles</a></li>
+                
+                <li>
+                <form method="post" action="{{ url_for('delete_account', user_id=user_id) }}">
+                    <button type="submit">Delete Account</button>
+                </form>
+                </li>
+
+                <li><a href="{{ url_for('signout') }}">Sign Out</a></li>
+            {% else %}
+                <li><a href="/signin">Sign In</a></li>
+                <li><a href="/signup">Sign Up</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <div class="content">
+        <h1>CONTENT MANAGEMENT SYSTEM</h1>
+    </div>
+</body>
+</html>
