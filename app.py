@@ -14,7 +14,7 @@ db_params = {
     'dbname': 'cmsdb',
     'user': 'postgres',
     'password': 'Alsen#211',
-    'host': 'localhost', 
+    'host': 'host.docker.internal', 
     'port': 5432, 
 }
 
@@ -331,4 +331,4 @@ def verify_credentials(username, password):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,host='0.0.0.0')
