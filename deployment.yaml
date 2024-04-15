@@ -16,7 +16,7 @@ spec:
         - name: cms-flask-app
           image: shalusenthilnathan/cms_app:latest 
           ports:
-            - containerPort: 5000  # Assuming that flask runs on port 5000
+            - containerPort: 5000 
           env:
             - name: DATABASE_HOST
               value: postgres-service  # PostgreSQL service name
