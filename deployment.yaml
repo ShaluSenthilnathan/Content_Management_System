@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cms-flask-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cms-flask-app
+  template:
+    metadata:
+      labels:
+        app: cms-flask-app
+    spec:
+      containers:
+        - name: cms-flask-app
+          image: shalusenthilnathan/cms_app:latest 
+          ports:
+            - containerPort: 5000  # Assuming that flask runs on port 5000
+          env:
+            - name: DATABASE_HOST
+              value: postgres-service  # PostgreSQL service name
+            - name: DATABASE_PORT
+              value: "5432"  # PostgreSQL port
+            - name: DATABASE_NAME
+              value: cmsdb 
+            - name: DATABASE_USER
+              value: postgres
+            - name: DATABASE_PASSWORD
+              value: Alsen#211

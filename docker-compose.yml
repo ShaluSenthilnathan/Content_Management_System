@@ -1,24 +1,19 @@
 version: '3.8'
 
 services:
-  web:
-    build: .  
+  app:
+    build: .
     ports:
       - "5000:5000"
-    depends_on:
-      - db
     environment:
-      DB_NAME: cmsdb
-      DB_USER: postgres
-      DB_PASSWORD: Alsen#211
-      DB_HOST: db
-      DB_PORT: 5432
+      FLASK_ENV: development
+    depends_on:
+      - postgres
     volumes:
       - .:/app
 
-  db:
+  postgres:
     image: postgres
-    restart: always
     environment:
       POSTGRES_DB: cmsdb
       POSTGRES_USER: postgres

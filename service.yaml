@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cms-flask-service
+spec:
+  selector:
+    app: cms-flask-app
+  ports:
+    - protocol: TCP
+      port: 80  # Port to expose on the service
+      targetPort: 5000  # Port your Flask app listens on in the container
+  type: LoadBalancer  # Use LoadBalancer type to expose the service outside of Minikube
