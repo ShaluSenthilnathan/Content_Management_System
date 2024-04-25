@@ -24,7 +24,7 @@ spec:
             - name: POSTGRES_PASSWORD
               value: Alsen#211
           ports:
-            - containerPort: 5432  # PostgreSQL default port
+            - containerPort: 5432 
           volumeMounts:
             - name: postgres-storage
               mountPath: /var/lib/postgresql/data
